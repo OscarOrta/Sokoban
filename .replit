@@ -1,2 +1,2 @@
-language = "bash"
+ language = "bash"
 run = "python3 sokoban.py"

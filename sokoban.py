@@ -43,28 +43,31 @@ class Sokoban: #Se crea la clase llamada sokoban
           print(chr(33),end ="")#imprime "!" y no da salto de linea 
       print() #imprime una linea en blanco
 
-
-
-juego = Sokoban()
-juego.imprimirMapa()
-
-
-"""
   def moverDerecha(self): #metodo para mover el personaje a la derecha
-    self.posicion_columna += 1 #Actualiza la posicion un lugar derecha
-    self.mapa[self.posicion_columna]= 2 #Coloca el muñeco en la nueva posicion
-    self.mapa[self.posicion_columna - 1] = 3 #Coloca un espacio donde estaba el muñeco
-    self.imprimirMapa() #Imprimir el mapa actualizado
+    if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1 
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.posicion_columna = self.posicion_columna + 1
     
   def moverIzquierda(self): #metodo para mover el personaje a la izquierda
-    self.posicion_columna -= 1 #Actualiza la posicion un lugar izquierda
-    self.mapa[self.posicion_columna]= 2 #Coloca el muñeco en la nueva posicion
-    self.mapa[self.posicion_columna + 1] = 3 #Coloca un espacio donde estaba el muñeco
-    self.imprimirMapa() #Imprimir el mapa actualizado
+    if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1 
+      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 0
+      self.posicion_columna = self.posicion_columna - 1 
 
-juego = Sokoban() #Crea un objeto del juego sokoban
-juego.imprimirMapa() #Imprime el mapa
+  def moverArriba(self): #metodo para mover el personaje hacia arriba
+      if self.map[self.posicion_fila][self.posicion_columna] == 0 and self.map[self.posicion_fila - 1][self.posicion_columna] == 1: # If the character is on the floor and the next position is a floor
+          self.map[self.posicion_fila][self.posicion_columna] = 1 # put floor character last position
+          self.map[self.posicion_fila - 1][self.posicion_columna] = 0 # move the character to next position
+          self.posicion_fila = self.posicion_fila - 1 # update the character position
 
+
+  def moverAbajo(self): #metodo para mover el personaje hacia abajo
+      if self.map[self.posicion_fila][self.posicion_columna] == 0 and self.map[self.posicion_fila + 1][self.posicion_columna] == 1: # If the character is on the floor and the next position is a floor
+          self.map[self.posicion_fila][self.posicion_columna] = 1 # put floor character last position
+          self.map[self.posicion_fila + 1][self.posicion_columna] = 0 # move the character to next position
+          self.posicion_fila = self.posicion_fila + 1 # update the character position
+    
 instrucciones = "q Salir\nd Derecha\na Izquierda" #Variable con las instrucciones del juego
 
 while True: #Bucle infinito
@@ -79,9 +82,9 @@ while True: #Bucle infinito
     break
 
 
-juego = Sokoban()
-juego.jugar()
-"""
+juego = Sokoban()#Crea un objeto del juego sokoban
+juego.jugar()#Imprime el mapa
+
         
 
         
