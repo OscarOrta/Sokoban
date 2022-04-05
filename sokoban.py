@@ -12,15 +12,15 @@ class Sokoban: #Se crea la clase llamada sokoban
   """
   #mapa inicial del juego
   mapa = [] 
-  posicion_columna = 0 
-  posicion_fila = 0 
+  posicion_columna =  6
+  posicion_fila = 3 
   
   def __init__(self): #metodo para inicializar el objeto
     pass #inicializacion del juego
 #t
   def cargarMapa(self): #cargar el mapa 
     self.mapa = [
-        [1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1], 
         [1,3,3,1,1,1,1,1,1],
         [1,3,3,3,3,0,3,3,1],
         [1,3,1,1,3,3,2,3,1],
@@ -35,16 +35,16 @@ class Sokoban: #Se crea la clase llamada sokoban
   def encontrarPosicionC(self):
       for fila in range(len(self.mapa)): # Get rows number on the map
         for columna in range(len(self.mapa[fila])): # Get columns number on the map
-          if self.mapa[fila][columna] == 0: # If the character is found
+          if self.mapa[fila][columna] == 2: # If the character is found
             self.posicion_fila = fila # Update the character row position
             self.posicion_columna = columna # Update the character col position
   def moverDerecha(self): #metodo para mover el personaje a la derecha
-    if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 3:
+    if self.mapa[self.posicion_fila][self.posicion_columna] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 3:
       self.mapa[self.posicion_fila][self.posicion_columna] = 3 
-      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
-      self.posicion_columna = self.posicion_columna + 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 2
+      self.posicion_columna += 1
     
-  def moverIzquierda(self): #metodo para mover el personaje a la izquierda
+  """def moverIzquierda(self): #metodo para mover el personaje a la izquierda
     if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 3:
       self.mapa[self.posicion_fila][self.posicion_columna] = 3 
       self.mapa[self.posicion_fila][self.posicion_columna - 1] = 0
@@ -63,9 +63,10 @@ class Sokoban: #Se crea la clase llamada sokoban
           self.mapa[self.posicion_fila + 1][self.posicion_columna] = 0 # move the character to next position
           self.posicion_fila = self.posicion_fila + 1 # update the character position
 
-    
+    """
   def jugar(self):
     self.cargarMapa()
+    self.encontrarPosicionC
     while True:
       self.imprimirMapa()
       opciones = "d-derecha, s-abajo, w-arriba, a-izquierda, q-salir del juego"
