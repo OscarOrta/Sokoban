@@ -23,13 +23,13 @@ class Sokoban: #Se crea la clase llamada sokoban
         [3,3,3,3,3,3,3,3,3], 
         [3,1,1,3,3,3,3,3,3],
         [3,1,1,1,1,2,1,1,3],
-        [3,1,3,3,1,1,0,1,3],
+        [3,1,3,3,1,1,0,4,6,1,1,3],
         [3,4,3,3,2,1,2,1,3],
         [3,4,3,3,1,1,1,1,3],
         [3,3,3,3,3,3,3,3,3],
     ]
 #v
-  def imprimirMapa(self):#ta
+  def imprimirMapa(self):#imprime el mapa
     for fila in self.mapa:
       print(fila)
   def encontrarPosicionC(self):
@@ -38,12 +38,78 @@ class Sokoban: #Se crea la clase llamada sokoban
           if self.mapa[fila][columna] == 0: # If the character is found
             self.posicion_fila = fila # Update the character row position
             self.posicion_columna = columna # Update the character col position
-  def moverDerecha(self): #metodo para mover el personaje a la derecha
+  #metodo para mover el personaje a la derecha
+  def moverDerecha(self):
     if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 1:
       self.mapa[self.posicion_fila][self.posicion_columna] = 1
       self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
       self.posicion_columna += 1
+    #personaje, meta = espacio, personaje_meta
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.posicion_columna += 1      
+    #personaje_meta, espacio = meta, personaje
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.posicion_columna += 1
+    #personaje, caja, espacio = espacio, personaje, meta 
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 2
+      self.posicion_columna += 1
+    #personaje, caja, meta = espacio, personaje, caja_meta   
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 6
+      self.posicion_columna += 1
+    #personaje, caja_meta, espacio = espacio, personaje_meta, caja 
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 2
+      self.posicion_columna += 1
+    #personaje, caja_meta, meta = espacio, personaje_meta, caja_meta
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 6
+      self.posicion_columna += 1     
+    #personaje_meta, meta = meta, personaje_meta
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.posicion_columna += 1
+    #personaje_meta, caja, espacio = meta, personaje, caja
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 2
+      self.posicion_columna += 1 
+    #personaje_meta, caja, meta = meta, personaje, caja_meta
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 6
+      self.posicion_columna += 1 
+    #personaje_meta, caja_meta, espacio = meta, personaje_meta, caja
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 1:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 2
+      self.posicion_columna += 1       
     
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 4:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 4
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 6
+      self.posicion_columna += 1
+
+
+      
   def moverIzquierda(self): #metodo para mover el personaje a la izquierda
     if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 1:
       self.mapa[self.posicion_fila][self.posicion_columna] = 1 
