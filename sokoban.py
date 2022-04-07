@@ -44,10 +44,10 @@ class Sokoban: #Se crea la clase llamada sokoban
       self.mapa[self.posicion_fila][self.posicion_columna + 1] = 2
       self.posicion_columna += 1
     
-  """def moverIzquierda(self): #metodo para mover el personaje a la izquierda
-    if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 3:
+  def moverIzquierda(self): #metodo para mover el personaje a la izquierda
+    if self.mapa[self.posicion_fila][self.posicion_columna] == 2 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 3:
       self.mapa[self.posicion_fila][self.posicion_columna] = 3 
-      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 0
+      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 2
       self.posicion_columna = self.posicion_columna - 1 
 
   def moverArriba(self): #metodo para mover el personaje hacia arriba
@@ -61,9 +61,9 @@ class Sokoban: #Se crea la clase llamada sokoban
       if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila + 1][self.posicion_columna] == 3: # If the character is on the floor and the next position is a floor
           self.mapa[self.posicion_fila][self.posicion_columna] = 3 # put floor character last position
           self.mapa[self.posicion_fila + 1][self.posicion_columna] = 0 # move the character to next position
-          self.posicion_fila = self.posicion_fila + 1 # update the character position
+          self.posicion_fila = self.posicion_fila + 1 # update the character position 
 
-    """
+    
   def jugar(self):
     self.cargarMapa()
     self.encontrarPosicionC
