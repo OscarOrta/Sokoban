@@ -51,16 +51,16 @@ class Sokoban: #Se crea la clase llamada sokoban
       self.posicion_columna = self.posicion_columna - 1 
 
   def moverArriba(self): #metodo para mover el personaje hacia arriba
-      if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila - 1][self.posicion_columna] == 3: # If the character is on the floor and the next position is a floor
+      if self.mapa[self.posicion_fila][self.posicion_columna] == 2 and self.mapa[self.posicion_fila - 1][self.posicion_columna] == 3: # If the character is on the floor and the next position is a floor
           self.mapa[self.posicion_fila][self.posicion_columna] = 3 # put floor character last position
-          self.mapa[self.posicion_fila - 1][self.posicion_columna] = 0 # move the character to next position
+          self.mapa[self.posicion_fila - 1][self.posicion_columna] = 2 # move the character to next position
           self.posicion_fila = self.posicion_fila - 1 # update the character position
 
 
   def moverAbajo(self): #metodo para mover el personaje hacia abajo
-      if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila + 1][self.posicion_columna] == 3: # If the character is on the floor and the next position is a floor
+      if self.mapa[self.posicion_fila][self.posicion_columna] == 2 and self.mapa[self.posicion_fila + 1][self.posicion_columna] == 3: # If the character is on the floor and the next position is a floor
           self.mapa[self.posicion_fila][self.posicion_columna] = 3 # put floor character last position
-          self.mapa[self.posicion_fila + 1][self.posicion_columna] = 0 # move the character to next position
+          self.mapa[self.posicion_fila + 1][self.posicion_columna] = 2 # move the character to next position
           self.posicion_fila = self.posicion_fila + 1 # update the character position 
 
     
