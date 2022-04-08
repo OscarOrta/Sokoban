@@ -154,17 +154,17 @@ class Sokoban: #Se crea la clase llamada sokoban
       self.mapa[self.posicion_fila][self.posicion_columna - 2] = 2
       self.posicion_columna -= 1
     #personaje, caja_meta, meta = espacio, personaje_meta, caja_meta
-    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 4:
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 6 and self.mapa[self.posicion_fila][self.posicion_columna - 2] == 4:
       print("personaje, caja_meta, meta = espacio, personaje_meta, caja_meta")
       self.mapa[self.posicion_fila][self.posicion_columna] = 1
-      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
-      self.mapa[self.posicion_fila][self.posicion_columna + 2] = 6
-      self.posicion_columna += 1     
+      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna - 2] = 6
+      self.posicion_columna -= 1     
     #personaje_meta, meta = meta, personaje_meta
-    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 4:
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 4:
       print("personaje_meta, meta = meta, personaje_meta")
       self.mapa[self.posicion_fila][self.posicion_columna] = 4
-      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 5
+      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 5
       self.posicion_columna += 1
     #personaje_meta, caja, espacio = meta, personaje, caja
     elif self.mapa[self.posicion_fila][self.posicion_columna] == 5 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 2 and self.mapa[self.posicion_fila][self.posicion_columna + 2] == 1:
