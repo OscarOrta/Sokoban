@@ -1,3 +1,5 @@
+import os
+import sys
 print("Hola mundo")
 class Sokoban: #Se crea la clase llamada sokoban
   """
@@ -363,13 +365,12 @@ class Sokoban: #Se crea la clase llamada sokoban
         self.mapa[self.posicion_fila + 1][self.posicion_columna] = 5
         self.mapa[self.posicion_fila + 2][self.posicion_columna] = 6
         self.posicion_fila += 1
-    
   def jugar(self):
     self.cargarMapa()
     self.encontrarPosicionC
     while True:
       self.imprimirMapa()
-      opciones = "d-derecha, s-abajo, w-arriba, a-izquierda, q-salir del juego"
+      opciones = "d-derecha, s-abajo, w-arriba, a-izquierda, q-salir del juego, r-reiniciar nivel-"
       print(opciones)
       movimiento = input("moverse a: ")
       if movimiento == "d":
@@ -380,10 +381,10 @@ class Sokoban: #Se crea la clase llamada sokoban
         self.moverAbajo()
       elif movimiento == "w":
         self.moverArriba()
+      elif movimiento == "r":
+        os.execv(sys.executable, ['python'] + sys.argv) 
       elif movimiento == "q":
         break
-
-
 juego = Sokoban()#Crea un objeto del juego sokoban
 juego.jugar()#Imprime el mapa
 
