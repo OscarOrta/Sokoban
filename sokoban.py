@@ -14,27 +14,41 @@ class Sokoban: #Se crea la clase llamada sokoban
   """
   #mapa inicial del juego
   mapa = [] 
-  posicion_columna =  6
-  posicion_fila = 3 
-  
+  posicion_columna =  7
+  posicion_fila =  4
+
   def __init__(self): #metodo para inicializar el objeto
     pass #inicializacion del juego
 #t
   def cargarMapa(self): #cargar el mapa 
     self.mapa = [
-        [3,3,3,3,3,3,3,3,3], 
-        [3,1,1,3,3,3,3,3,3],
-        [3,1,1,1,1,1,2,1,3],
-        [3,4,3,3,1,1,0,1,3],
-        [3,4,3,3,2,1,2,1,3],
-        [3,4,3,3,1,1,1,1,3],
-        [3,3,3,3,3,3,1,3,3],
-        [3,3,3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3,3,3,3,3,3,3,3], 
+        [3,4,4,1,1,3,1,1,1,1,1,3,3,3],
+        [3,4,4,1,1,3,1,2,1,1,2,1,1,3],
+        [3,4,4,1,1,3,2,3,3,3,3,1,1,3],
+        [3,4,4,1,1,1,1,0,1,3,3,1,1,3],
+        [3,4,4,1,1,3,1,3,1,1,2,1,3,3],
+        [3,3,3,3,3,3,1,3,3,2,1,2,1,3],
+        [3,3,3,1,2,1,1,2,1,2,1,2,1,3],
+        [3,3,3,1,1,1,1,3,1,1,1,1,1,3],
+        [3,3,3,3,3,3,3,3,3,3,3,3,3,3],
     ]
 #v
   def imprimirMapa(self):#imprime el mapa
     for fila in self.mapa:
       print(fila)
+    for c in i:
+        if c == 3: #Si el elemento es un 3 (camino)
+          print(" ", end ="") #imprime " " y no da salto de linea
+        elif c==2: #Si el elemento es un 2 (muñeco)
+          print(chr(64),end ="") #imprime @ " " y no da salto de linea
+        elif c==1: #Si el elemento es 1 (pared)
+          print("#",end ="") #imprime "|" y no da salto de linea
+        elif c==0: #Si el elemento es un 0 (caja)
+          print("°",end ="")#Imprime "#" y no da salto de linea
+        elif c==4: #Si el elemento es un 4 (meta)
+          print(chr(33),end ="")#imprime "!" y no da salto de linea 
+   
   def encontrarPosicionC(self):
       for fila in range(len(self.mapa)): # Get rows number on the map
         for columna in range(len(self.mapa[fila])): # Get columns number on the map
