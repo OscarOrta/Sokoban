@@ -10,3 +10,16 @@
         elif c==4: #Si el elemento es un 4 (meta)
           print(chr(33),end ="")#imprime "!" y no da salto de linea 
       print() #imprime una linea en blanco
+
+
+    self.mapa = [
+        [3,3,3,3,3,3,3,3], 
+        [3,3,3,3,1,1,3,3],
+        [3,1,1,2,1,1,3,3],
+        [3,1,3,2,3,1,1,3],
+        [3,1,1,2,1,1,1,3],
+        [3,4,3,3,3,1,1,3],
+        [3,4,3,3,3,3,1,3],
+        [3,4,1,0,1,1,1,3],
+        [3,3,3,3,3,3,3,3],
+    ]

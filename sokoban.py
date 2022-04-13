@@ -37,18 +37,7 @@ class Sokoban: #Se crea la clase llamada sokoban
   def imprimirMapa(self):#imprime el mapa
     for fila in self.mapa:
       print(fila)
-    for c in i:
-        if c == 3: #Si el elemento es un 3 (camino)
-          print(" ", end ="") #imprime " " y no da salto de linea
-        elif c==2: #Si el elemento es un 2 (muñeco)
-          print(chr(64),end ="") #imprime @ " " y no da salto de linea
-        elif c==1: #Si el elemento es 1 (pared)
-          print("#",end ="") #imprime "|" y no da salto de linea
-        elif c==0: #Si el elemento es un 0 (caja)
-          print("°",end ="")#Imprime "#" y no da salto de linea
-        elif c==4: #Si el elemento es un 4 (meta)
-          print(chr(33),end ="")#imprime "!" y no da salto de linea 
-   
+
   def encontrarPosicionC(self):
       for fila in range(len(self.mapa)): # Get rows number on the map
         for columna in range(len(self.mapa[fila])): # Get columns number on the map
@@ -379,25 +368,49 @@ class Sokoban: #Se crea la clase llamada sokoban
         self.mapa[self.posicion_fila + 1][self.posicion_columna] = 5
         self.mapa[self.posicion_fila + 2][self.posicion_columna] = 6
         self.posicion_fila += 1
-  def jugar(self):
-    self.cargarMapa()
-    self.encontrarPosicionC
+  def powerUp(self):
+    #metodo para romper una pared del lado derecho
+    if self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna + 1] == 3:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna + 1] = 0
+      self.posicion_columna += 1
+    #metodo para romper una pared del lado izquierdo  
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila][self.posicion_columna - 1] == 3:
+      self.mapa[self.posicion_fila][self.posicion_columna] = 1
+      self.mapa[self.posicion_fila][self.posicion_columna - 1] = 0
+      self.posicion_columna -= 1   
+    #metodo para romper una pared de abajo
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila + 1][self.posicion_columna] == 3: 
+        self.mapa[self.posicion_fila][self.posicion_columna] = 1 
+        self.mapa[self.posicion_fila + 1][self.posicion_columna] = 0 
+        self.posicion_fila = self.posicion_fila + 1
+    #metodo para romper una pared de arriba 
+    elif self.mapa[self.posicion_fila][self.posicion_columna] == 0 and self.mapa[self.posicion_fila - 1][self.posicion_columna] == 3: 
+        self.mapa[self.posicion_fila][self.posicion_columna] = 1 
+        self.mapa[self.posicion_fila - 1][self.posicion_columna] = 0 
+        self.posicion_fila = self.posicion_fila - 1
+      
+  def jugar(self): #metodo para poder jugar
+    self.cargarMapa() #llama a la funcion cargarMapa
+    self.encontrarPosicionC #encunetra la posicion del personaje
     while True:
-      self.imprimirMapa()
+      self.imprimirMapa()#imprime el mapa
       opciones = "d-derecha, s-abajo, w-arriba, a-izquierda, q-salir del juego, r-reiniciar nivel-"
-      print(opciones)
-      movimiento = input("moverse a: ")
-      if movimiento == "d":
+      print(opciones)#nos muestra las opciones para jugar
+      movimiento = input("moverse a: ")#pide al usario una entrada
+      if movimiento == "d":#si la entrada es "d" llama al movimiento derecho
         self.moverDerecha()
-      elif movimiento == "a":
+      elif movimiento == "a":#si la entrada es "a" llama al movimiento izquierdo
         self.moverIzquierda()
-      elif movimiento == "s":
+      elif movimiento == "s":#si la entrada es "s" llama al movimiento mover abajo
         self.moverAbajo()
-      elif movimiento == "w":
+      elif movimiento == "w":#si la entrada es "w" llama al movimiento mover arriba
         self.moverArriba()
-      elif movimiento == "r":
+      elif movimiento == "r":# si la entrada es "r" se reiniciara el nivel para empezar desde cero 
         os.execv(sys.executable, ['python'] + sys.argv) 
-      elif movimiento == "q":
+      elif movimiento == "t":
+        self.powerUp()
+      elif movimiento == "q":#si la entrada es "q" el juego terminara 
         break
 juego = Sokoban()#Crea un objeto del juego sokoban
 juego.jugar()#Imprime el mapa
